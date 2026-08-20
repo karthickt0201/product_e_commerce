@@ -1,0 +1,119 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.catalogue-page {
+  animation: rise-in $transition-slow both;
+}
+
+.catalogue-header {
+  margin-bottom: $space-6;
+
+  h1 {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-ink-900;
+  }
+
+  p {
+    margin-top: $space-1;
+    color: $color-ink-500;
+    font-size: $font-size-sm;
+  }
+}
+
+.catalogue-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: $space-6;
+
+  @include respond-down($bp-lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.filters {
+  @include card;
+  padding: $space-5;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+}
+
+.filters__group {
+  h3 {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: $color-ink-500;
+    margin-bottom: $space-3;
+  }
+
+  input[type='range'] {
+    width: 100%;
+    accent-color: $color-brand-teal;
+  }
+}
+
+.chip-toggle {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $font-size-sm;
+  color: $color-ink-700;
+  padding: $space-1 0;
+  cursor: pointer;
+  text-transform: capitalize;
+
+  input {
+    accent-color: $color-brand-teal;
+  }
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $font-size-sm;
+  color: $color-ink-700;
+  cursor: pointer;
+
+  input {
+    width: 18px;
+    height: 18px;
+    accent-color: $color-brand-teal;
+  }
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: $space-5;
+}
+
+.skeleton-card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.error-state,
+.empty-state {
+  @include flex-center;
+  flex-direction: column;
+  gap: $space-3;
+  min-height: 40vh;
+  color: $color-ink-500;
+  font-size: $font-size-sm;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-4;
+  padding: $space-6 0 $space-2;
+  font-size: $font-size-sm;
+  color: $color-ink-600;
+}

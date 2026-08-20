@@ -1,0 +1,75 @@
+<div class="login-page">
+  <div class="login-card animate-rise-in">
+    <div class="login-card__brand">
+      <span class="login-card__brand-dot"></span>
+      <span>Platform<strong>Commons</strong></span>
+    </div>
+
+    <h1>Welcome back</h1>
+    <p class="login-card__subtitle">Sign in to continue to your workspace.</p>
+
+    <ng-container *ngIf="!loading(); else loadingState">
+      <form class="login-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="you@platformcommons.dev"
+            autocomplete="username"
+            [class.field--invalid]="emailControl.invalid && emailControl.touched"
+          />
+          <p class="field__error" *ngIf="emailControl.invalid && emailControl.touched">
+            <span *ngIf="emailControl.errors?.['required']">Email is required.</span>
+            <span *ngIf="emailControl.errors?.['email']">Enter a valid email address.</span>
+          </p>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="password-wrap">
+            <input
+              id="password"
+              [type]="showPassword() ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              [class.field--invalid]="passwordControl.invalid && passwordControl.touched"
+            />
+            <button type="button" class="password-toggle" (click)="showPassword.set(!showPassword())">
+              {{ showPassword() ? 'Hide' : 'Show' }}
+            </button>
+          </div>
+          <p class="field__error" *ngIf="passwordControl.invalid && passwordControl.touched">
+            <span *ngIf="passwordControl.errors?.['required']">Password is required.</span>
+            <span *ngIf="passwordControl.errors?.['minlength']">At least 6 characters.</span>
+          </p>
+        </div>
+
+        <p class="login-form__error" *ngIf="errorMessage()">{{ errorMessage() }}</p>
+
+        <button class="submit-btn" type="submit">Sign in</button>
+      </form>
+
+      <div class="demo-hints">
+        <span>Try a demo account:</span>
+        <div class="demo-hints__buttons">
+          <button type="button" (click)="fillDemo('admin')">Admin</button>
+          <button type="button" (click)="fillDemo('user')">Shopper</button>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #loadingState>
+      <div class="login-form login-form--loading">
+        <app-skeleton height="0.75rem" width="40%"></app-skeleton>
+        <app-skeleton height="2.75rem" radius="10px"></app-skeleton>
+        <app-skeleton height="0.75rem" width="30%"></app-skeleton>
+        <app-skeleton height="2.75rem" radius="10px"></app-skeleton>
+        <app-skeleton height="2.75rem" radius="10px"></app-skeleton>
+        <p class="login-form__loading-note">Verifying your credentials…</p>
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="cart-page">
+  <h1>Your cart</h1>
+
+  <ng-container *ngIf="!cart.isEmpty(); else emptyCart">
+    <div class="cart-list">
+      <div class="cart-row" *ngFor="let item of cart.items()">
+        <img [src]="item.thumbnail" [alt]="item.title" />
+        <div class="cart-row__info">
+          <span class="cart-row__title">{{ item.title }}</span>
+          <span class="cart-row__price">${{ item.price.toFixed(2) }}</span>
+        </div>
+        <div class="qty-stepper">
+          <button type="button" (click)="cart.setQuantity(item.productId, item.quantity - 1)">−</button>
+          <span>{{ item.quantity }}</span>
+          <button type="button" (click)="cart.setQuantity(item.productId, item.quantity + 1)" [disabled]="item.quantity >= item.maxStock">+</button>
+        </div>
+        <span class="cart-row__total">${{ (item.price * item.quantity).toFixed(2) }}</span>
+        <button class="cart-row__remove" type="button" (click)="cart.remove(item.productId)">Remove</button>
+      </div>
+    </div>
+
+    <div class="cart-summary">
+      <span>Subtotal</span>
+      <span>${{ cart.subtotal().toFixed(2) }}</span>
+    </div>
+
+    <div class="cart-actions">
+      <a routerLink="/shop" class="btn btn--ghost">Continue shopping</a>
+      <button class="btn btn--primary" type="button" (click)="goToCheckout()">Proceed to checkout</button>
+    </div>
+  </ng-container>
+
+  <ng-template #emptyCart>
+    <div class="empty-cart">
+      <p>Your cart is empty.</p>
+      <a routerLink="/shop" class="btn btn--primary">Browse products</a>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,16 @@
+<div class="checkout-page">
+  <app-checkout-steps [current]="2"></app-checkout-steps>
+
+  <h1>Delivery details</h1>
+
+  <ng-container *ngIf="!loading()">
+    <div class="form-card">
+      <app-dynamic-form [fields]="fields()" [formGroup]="form"></app-dynamic-form>
+    </div>
+
+    <div class="checkout-actions">
+      <a routerLink="/shop/checkout/step/1" class="btn btn--ghost">Back</a>
+      <button class="btn btn--primary" type="button" (click)="continue()">Continue to payment</button>
+    </div>
+  </ng-container>
+</div>

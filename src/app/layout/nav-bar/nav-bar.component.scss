@@ -1,0 +1,148 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  height: $nav-height;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid $color-border;
+}
+
+.nav__inner {
+  height: 100%;
+  @include flex-between;
+  gap: $space-5;
+}
+
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-ink-900;
+  flex-shrink: 0;
+
+  strong {
+    color: $color-brand-teal;
+  }
+}
+
+.nav__brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: $radius-full;
+  background: linear-gradient(135deg, $color-brand-teal, $color-brand-indigo);
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: $space-5;
+  flex: 1;
+
+  a {
+    position: relative;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-ink-600;
+    padding: $space-2 0;
+    transition: color $transition-fast;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 2px;
+      background: $color-brand-teal;
+      transform: scaleX(0);
+      transition: transform $transition-fast;
+    }
+
+    &:hover {
+      color: $color-ink-900;
+    }
+
+    &.is-active {
+      color: $color-ink-900;
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+}
+
+.nav__cart-link {
+  display: flex;
+  align-items: center;
+  gap: $space-1;
+}
+
+.nav__cart-badge {
+  @include flex-center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: $radius-full;
+  background: $color-brand-teal;
+  color: $color-white;
+  font-size: 0.6875rem;
+  font-weight: $font-weight-bold;
+  animation: scale-in $transition-fast both;
+}
+
+.nav__user {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  flex-shrink: 0;
+}
+
+.nav__role-chip {
+  padding: 2px $space-2;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: $color-user-bg;
+  color: $color-user;
+
+  &--admin {
+    background: $color-admin-bg;
+    color: $color-admin;
+  }
+}
+
+.nav__name {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-ink-700;
+
+  @include respond-down($bp-md) {
+    display: none;
+  }
+}
+
+.nav__logout {
+  @include button-reset;
+  @include focus-ring;
+  padding: $space-2 $space-3;
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-ink-600;
+  border: 1px solid $color-border;
+  transition: all $transition-fast;
+
+  &:hover {
+    color: $color-danger;
+    border-color: $color-danger;
+    background: $color-danger-bg;
+  }
+}

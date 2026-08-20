@@ -1,0 +1,121 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.35);
+  z-index: 1500;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.panel {
+  width: 100%;
+  max-width: 420px;
+  height: 100%;
+  background: $color-surface;
+  box-shadow: $shadow-lg;
+  padding: $space-6;
+  overflow-y: auto;
+  @include scrollbar-thin;
+}
+
+.panel__header {
+  @include flex-between;
+  margin-bottom: $space-5;
+
+  h2 {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+  }
+
+  p {
+    font-size: $font-size-xs;
+    color: $color-ink-500;
+    margin-top: 2px;
+  }
+}
+
+.panel__close {
+  @include button-reset;
+  @include focus-ring;
+  width: 32px;
+  height: 32px;
+  border-radius: $radius-full;
+  color: $color-ink-500;
+
+  &:hover {
+    background: $color-ink-100;
+  }
+}
+
+.panel__status {
+  margin-bottom: $space-6;
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+
+  label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-ink-700;
+  }
+
+  select {
+    padding: $space-3;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    font-size: $font-size-sm;
+    @include focus-ring;
+  }
+}
+
+.panel__items h3 {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-ink-700;
+  margin-bottom: $space-3;
+}
+
+.line-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: $space-2;
+  padding: $space-2 0;
+  font-size: $font-size-sm;
+  border-bottom: 1px solid $color-ink-100;
+
+  &__title {
+    @include truncate;
+  }
+
+  &__qty {
+    color: $color-ink-500;
+  }
+
+  &__price {
+    font-weight: $font-weight-medium;
+  }
+}
+
+.panel__summary {
+  margin-top: $space-5;
+  padding-top: $space-4;
+  border-top: 1px dashed $color-border;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: $font-size-sm;
+  padding: $space-1 0;
+  color: $color-ink-600;
+
+  &--total {
+    font-weight: $font-weight-bold;
+    font-size: $font-size-md;
+    color: $color-ink-900;
+    padding-top: $space-2;
+  }
+}

@@ -1,0 +1,113 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.checkout-page {
+  max-width: 640px;
+  margin: 0 auto;
+  animation: rise-in $transition-slow both;
+
+  h1 {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $space-5;
+  }
+}
+
+.review-row {
+  @include card;
+  padding: $space-4;
+  display: grid;
+  grid-template-columns: 48px 1fr auto auto auto;
+  align-items: center;
+  gap: $space-3;
+  margin-bottom: $space-3;
+
+  img {
+    width: 48px;
+    height: 48px;
+    border-radius: $radius-sm;
+    object-fit: cover;
+  }
+}
+
+.review-row__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+
+  span {
+    font-weight: $font-weight-medium;
+    @include truncate;
+  }
+  small {
+    color: $color-ink-500;
+    font-size: $font-size-xs;
+  }
+}
+
+.review-row__total {
+  font-weight: $font-weight-semibold;
+}
+
+.review-row__remove {
+  @include button-reset;
+  color: $color-ink-400;
+
+  &:hover {
+    color: $color-danger;
+  }
+}
+
+.qty-stepper {
+  display: flex;
+  align-items: center;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  overflow: hidden;
+
+  button {
+    @include button-reset;
+    width: 28px;
+    height: 28px;
+    color: $color-ink-600;
+
+    &:hover:not(:disabled) { background: $color-ink-100; }
+    &:disabled { opacity: 0.4; }
+  }
+
+  span {
+    width: 26px;
+    text-align: center;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.totals-card {
+  @include card;
+  padding: $space-5;
+  margin: $space-5 0;
+}
+
+.totals-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: $font-size-sm;
+  color: $color-ink-600;
+  padding: $space-1 0;
+
+  &--grand {
+    font-size: $font-size-md;
+    font-weight: $font-weight-bold;
+    color: $color-ink-900;
+    padding-top: $space-3;
+    margin-top: $space-2;
+    border-top: 1px dashed $color-border;
+  }
+}
+
+.checkout-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: $space-3;
+}

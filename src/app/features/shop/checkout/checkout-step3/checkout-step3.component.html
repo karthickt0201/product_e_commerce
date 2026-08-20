@@ -1,0 +1,23 @@
+<div class="checkout-page">
+  <app-checkout-steps [current]="3"></app-checkout-steps>
+
+  <h1>Payment</h1>
+
+  <div class="form-card">
+    <app-dynamic-form [fields]="fields" [formGroup]="form"></app-dynamic-form>
+    <p class="hint">Use any 16-digit number that passes the Luhn check, e.g. 4539 1488 0343 6467.</p>
+  </div>
+
+  <div class="totals-card" *ngIf="cart.subtotal() | orderTotals as totals">
+    <div class="totals-row"><span>Subtotal</span><span>${{ totals.subtotal.toFixed(2) }}</span></div>
+    <div class="totals-row"><span>Tax (8%)</span><span>${{ totals.tax.toFixed(2) }}</span></div>
+    <div class="totals-row totals-row--grand"><span>Total</span><span>${{ totals.total.toFixed(2) }}</span></div>
+  </div>
+
+  <div class="checkout-actions">
+    <a routerLink="/shop/checkout/step/2" class="btn btn--ghost">Back</a>
+    <button class="btn btn--primary" type="button" (click)="placeOrder()" [disabled]="submitting()">
+      {{ submitting() ? 'Placing order…' : 'Place order' }}
+    </button>
+  </div>
+</div>

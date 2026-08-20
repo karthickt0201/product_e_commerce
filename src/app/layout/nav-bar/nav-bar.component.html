@@ -1,0 +1,30 @@
+<header class="nav">
+  <div class="nav__inner container">
+    <a class="nav__brand" [routerLink]="role() === 'admin' ? '/admin' : '/shop'">
+      <span class="nav__brand-dot"></span>
+      Platform<strong>Commons</strong>
+    </a>
+
+    <nav class="nav__links" *ngIf="currentUser() as user">
+      <ng-container *ngIf="role() === 'admin'">
+        <a routerLink="/admin/products" routerLinkActive="is-active">Products</a>
+        <a routerLink="/admin/orders" routerLinkActive="is-active">Orders</a>
+        <a routerLink="/admin/analytics" routerLinkActive="is-active">Analytics</a>
+      </ng-container>
+
+      <ng-container *ngIf="role() === 'user'">
+        <a routerLink="/shop" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }">Shop</a>
+        <a routerLink="/shop/cart" routerLinkActive="is-active" class="nav__cart-link">
+          Cart
+          <span class="nav__cart-badge" *ngIf="cartCount() > 0">{{ cartCount() }}</span>
+        </a>
+      </ng-container>
+    </nav>
+
+    <div class="nav__user" *ngIf="currentUser() as user">
+      <span class="nav__role-chip" [class.nav__role-chip--admin]="role() === 'admin'">{{ role() }}</span>
+      <span class="nav__name">{{ user.name }}</span>
+      <button class="nav__logout" type="button" (click)="logout()">Log out</button>
+    </div>
+  </div>
+</header>

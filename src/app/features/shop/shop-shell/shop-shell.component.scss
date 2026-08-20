@@ -1,0 +1,24 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.shop-shell {
+  padding: $space-6 $space-5 $space-8;
+  min-height: calc(100vh - #{$nav-height});
+}
+
+.shop-shell__placeholder {
+  @include flex-center;
+  flex-direction: column;
+  gap: $space-3;
+  min-height: 50vh;
+  color: $color-ink-500;
+  font-size: $font-size-sm;
+}
+
+.pulse-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: $radius-full;
+  background: $color-brand-teal;
+  animation: pulse-dot 1.1s ease-in-out infinite;
+}

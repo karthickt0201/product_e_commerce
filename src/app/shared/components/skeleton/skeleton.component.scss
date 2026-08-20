@@ -1,0 +1,14 @@
+@use 'variables' as *;
+
+.skeleton-stack {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.skeleton-block {
+  display: block;
+  background: linear-gradient(90deg, $color-ink-100 25%, $color-ink-200 37%, $color-ink-100 63%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}

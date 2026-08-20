@@ -1,0 +1,73 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+@use 'styles/animations';
+@use 'styles/buttons';
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  color: $color-ink-800;
+  background: $color-bg;
+  -webkit-font-smoothing: antialiased;
+  @include scrollbar-thin;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: rgba(15, 118, 110, 0.2);
+}
+
+.container {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 $space-5;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+// Loading bar used at top of page during route defer
+.route-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, $color-brand-teal, $color-brand-indigo);
+  transform-origin: left;
+  animation: route-progress-grow 900ms ease-out forwards;
+  z-index: 2000;
+}
+
+@keyframes route-progress-grow {
+  0% { transform: scaleX(0); opacity: 1; }
+  80% { transform: scaleX(0.9); }
+  100% { transform: scaleX(1); opacity: 0; }
+}

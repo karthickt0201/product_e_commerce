@@ -1,0 +1,62 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.steps {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  margin-bottom: $space-7;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  opacity: 0.5;
+  transition: opacity $transition-base;
+
+  &:not(:last-child)::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: $color-border;
+    margin-left: $space-3;
+  }
+
+  &--active,
+  &--done {
+    opacity: 1;
+  }
+}
+
+.step__dot {
+  @include flex-center;
+  width: 28px;
+  height: 28px;
+  border-radius: $radius-full;
+  background: $color-ink-100;
+  color: $color-ink-500;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  transition: all $transition-base;
+}
+
+.step--active .step__dot {
+  background: $color-brand-teal;
+  color: $color-white;
+}
+
+.step--done .step__dot {
+  background: $color-success;
+  color: $color-white;
+}
+
+.step__label {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-ink-700;
+
+  @include respond-down($bp-sm) {
+    display: none;
+  }
+}

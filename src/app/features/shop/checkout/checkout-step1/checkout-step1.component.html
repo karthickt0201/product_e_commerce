@@ -1,0 +1,35 @@
+<div class="checkout-page">
+  <app-checkout-steps [current]="1"></app-checkout-steps>
+
+  <h1>Review your cart</h1>
+
+  <div class="cart-review" *ngIf="cart.items().length">
+    <div class="review-row" *ngFor="let item of cart.items()">
+      <img [src]="item.thumbnail" [alt]="item.title" />
+      <div class="review-row__info">
+        <span>{{ item.title }}</span>
+        <small>${{ item.price.toFixed(2) }} each</small>
+      </div>
+      <div class="qty-stepper">
+        <button type="button" (click)="cart.setQuantity(item.productId, item.quantity - 1)">−</button>
+        <span>{{ item.quantity }}</span>
+        <button type="button" (click)="cart.setQuantity(item.productId, item.quantity + 1)" [disabled]="item.quantity >= item.maxStock">+</button>
+      </div>
+      <span class="review-row__total">${{ (item.price * item.quantity).toFixed(2) }}</span>
+      <button class="review-row__remove" type="button" (click)="cart.remove(item.productId)">✕</button>
+    </div>
+  </div>
+
+  <div class="totals-card" *ngIf="cart.subtotal() | orderTotals as totals">
+    <div class="totals-row"><span>Subtotal</span><span>${{ totals.subtotal.toFixed(2) }}</span></div>
+    <div class="totals-row"><span>Tax (8%)</span><span>${{ totals.tax.toFixed(2) }}</span></div>
+    <div class="totals-row totals-row--grand"><span>Total</span><span>${{ totals.total.toFixed(2) }}</span></div>
+  </div>
+
+  <div class="checkout-actions">
+    <a routerLink="/shop/cart" class="btn btn--ghost">Back to cart</a>
+    <button class="btn btn--primary" type="button" (click)="continue()" [disabled]="!cart.items().length">
+      Continue to delivery
+    </button>
+  </div>
+</div>

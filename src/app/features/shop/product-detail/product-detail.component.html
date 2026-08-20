@@ -1,0 +1,44 @@
+<div class="detail-page" *ngIf="product() as p">
+  <a class="back-link" routerLink="/shop">← Back to shop</a>
+
+  <div class="detail-layout">
+    <div class="detail-media">
+      <img [src]="p.thumbnail" [alt]="p.title" />
+    </div>
+
+    <div class="detail-info">
+      <span class="detail-info__category">{{ p.category }}</span>
+      <h1>{{ p.title }}</h1>
+      <p class="detail-info__rating">★ {{ p.rating }} rating</p>
+      <p class="detail-info__price">${{ p.price.toFixed(2) }}</p>
+      <p class="detail-info__desc">{{ p.description }}</p>
+
+      <div class="detail-info__stock" [class.detail-info__stock--out]="p.stock === 0">
+        {{ p.stock === 0 ? 'Out of stock' : p.stock + ' units available' }}
+      </div>
+
+      <div class="detail-info__actions" *ngIf="p.stock > 0; else notifyBlock">
+        <div class="qty-stepper">
+          <button type="button" (click)="decrement()">−</button>
+          <span>{{ quantity() }}</span>
+          <button type="button" (click)="increment()" [disabled]="quantity() >= p.stock">+</button>
+        </div>
+        <button class="btn btn--primary" type="button" (click)="addToCart()">Add to cart</button>
+      </div>
+      <ng-template #notifyBlock>
+        <button class="btn btn--ghost" type="button" disabled>Notify me</button>
+      </ng-template>
+    </div>
+  </div>
+
+  <section class="related" *ngIf="relatedProducts().length">
+    <h2>You might also like</h2>
+    <div class="related__grid">
+      <a class="related__card" *ngFor="let rp of relatedProducts()" [routerLink]="['/shop/products', rp.id]">
+        <img [src]="rp.thumbnail" [alt]="rp.title" />
+        <span>{{ rp.title }}</span>
+        <span class="related__price">${{ rp.price.toFixed(2) }}</span>
+      </a>
+    </div>
+  </section>
+</div>

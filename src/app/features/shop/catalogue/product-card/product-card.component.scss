@@ -1,0 +1,108 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.product-card {
+  @include card;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform $transition-base, box-shadow $transition-base;
+  animation: rise-in $transition-slow both;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+.product-card__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1;
+  background: $color-ink-50;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-slow;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.product-card__stock {
+  position: absolute;
+  top: $space-2;
+  right: $space-2;
+  padding: 2px $space-2;
+  border-radius: $radius-full;
+  background: rgba(255, 255, 255, 0.9);
+  color: $color-success;
+  font-size: 0.6875rem;
+  font-weight: $font-weight-semibold;
+
+  &--out {
+    color: $color-danger;
+  }
+}
+
+.product-card__body {
+  padding: $space-4;
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+}
+
+.product-card__category {
+  font-size: $font-size-xs;
+  color: $color-ink-400;
+  text-transform: capitalize;
+}
+
+.product-card__title {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-ink-900;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.6em;
+}
+
+.product-card__footer {
+  margin-top: $space-2;
+  @include flex-between;
+}
+
+.product-card__price {
+  font-size: $font-size-md;
+  font-weight: $font-weight-bold;
+  color: $color-ink-900;
+}
+
+.product-card__add {
+  @include button-reset;
+  @include focus-ring;
+  padding: $space-2 $space-3;
+  border-radius: $radius-md;
+  background: $color-user-bg;
+  color: $color-brand-teal;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  transition: all $transition-fast;
+
+  &:hover:not(:disabled) {
+    background: $color-brand-teal;
+    color: $color-white;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

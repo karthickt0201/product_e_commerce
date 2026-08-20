@@ -1,0 +1,63 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+@mixin btn-base {
+  @include button-reset;
+  @include focus-ring;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: $space-3 $space-5;
+  border-radius: $radius-md;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-sm;
+  transition: transform $transition-fast, box-shadow $transition-fast, background $transition-fast, color $transition-fast, border-color $transition-fast;
+}
+
+.btn {
+  @include btn-base;
+
+  &--primary {
+    background: linear-gradient(135deg, $color-brand-teal, $color-brand-teal-dark);
+    color: $color-white;
+    box-shadow: $shadow-sm;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: $shadow-md;
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: $color-ink-600;
+    border: 1px solid $color-border;
+
+    &:hover {
+      border-color: $color-ink-400;
+      color: $color-ink-900;
+    }
+  }
+
+  &--danger {
+    background: $color-danger-bg;
+    color: $color-danger;
+
+    &:hover {
+      background: $color-danger;
+      color: $color-white;
+    }
+  }
+
+  &--sm {
+    padding: $space-2 $space-3;
+    font-size: $font-size-xs;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+}

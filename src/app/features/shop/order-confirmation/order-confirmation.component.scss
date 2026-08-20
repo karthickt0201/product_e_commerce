@@ -1,0 +1,55 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.confirmation-page {
+  max-width: 480px;
+  margin: $space-8 auto;
+  text-align: center;
+  animation: rise-in $transition-slow both;
+}
+
+.confirmation-badge {
+  @include flex-center;
+  width: 64px;
+  height: 64px;
+  border-radius: $radius-full;
+  background: $color-success-bg;
+  color: $color-success;
+  font-size: $font-size-2xl;
+  margin: 0 auto $space-4;
+  animation: scale-in $transition-slow both;
+}
+
+h1 {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  margin-bottom: $space-2;
+}
+
+p {
+  color: $color-ink-500;
+  margin-bottom: $space-6;
+}
+
+.order-summary {
+  @include card;
+  padding: $space-5;
+  text-align: left;
+  margin-bottom: $space-6;
+}
+
+.order-summary__row {
+  display: flex;
+  justify-content: space-between;
+  font-size: $font-size-sm;
+  padding: $space-2 0;
+  color: $color-ink-600;
+
+  &--total {
+    font-weight: $font-weight-bold;
+    color: $color-ink-900;
+    border-top: 1px dashed $color-border;
+    margin-top: $space-2;
+    padding-top: $space-3;
+  }
+}

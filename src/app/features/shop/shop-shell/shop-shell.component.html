@@ -1,0 +1,15 @@
+<div class="shop-shell container">
+  @defer (on idle) {
+    <router-outlet></router-outlet>
+  } @placeholder (minimum 200ms) {
+    <div class="shop-shell__placeholder">
+      <div class="pulse-dot"></div>
+      <p>Loading the storefront…</p>
+    </div>
+  } @loading (minimum 200ms) {
+    <div class="shop-shell__placeholder">
+      <div class="pulse-dot"></div>
+      <p>Loading the storefront…</p>
+    </div>
+  }
+</div>

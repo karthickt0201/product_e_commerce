@@ -1,0 +1,5 @@
+<app-nav-bar *ngIf="isAuthenticated()"></app-nav-bar>
+<main class="app-shell">
+  <router-outlet></router-outlet>
+</main>
+<app-toast-tray></app-toast-tray>

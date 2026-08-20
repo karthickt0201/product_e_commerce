@@ -1,0 +1,39 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.card-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.card-input__field {
+  width: 100%;
+  padding: $space-3 $space-8 $space-3 $space-4;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  font-size: $font-size-base;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+  @include focus-ring;
+}
+
+.card-input--valid .card-input__field {
+  border-color: $color-success;
+}
+.card-input--invalid .card-input__field {
+  border-color: $color-danger;
+}
+
+.card-input__icon {
+  position: absolute;
+  right: $space-4;
+  font-weight: $font-weight-bold;
+  color: $color-success;
+  animation: scale-in $transition-fast both;
+
+  &--bad {
+    color: $color-danger;
+  }
+}

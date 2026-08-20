@@ -1,0 +1,31 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.not-found {
+  min-height: calc(100vh - #{$nav-height});
+  @include flex-center;
+  flex-direction: column;
+  gap: $space-3;
+  text-align: center;
+  animation: rise-in $transition-slow both;
+
+  h1 {
+    font-size: 4rem;
+    font-weight: $font-weight-bold;
+    background: linear-gradient(135deg, $color-brand-teal, $color-brand-indigo);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  p {
+    color: $color-ink-500;
+  }
+
+  a {
+    margin-top: $space-3;
+    color: $color-brand-teal;
+    font-weight: $font-weight-medium;
+    text-decoration: underline;
+  }
+}

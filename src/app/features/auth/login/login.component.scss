@@ -1,0 +1,181 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.login-page {
+  min-height: 100vh;
+  @include flex-center;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(15, 118, 110, 0.12), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(67, 56, 202, 0.12), transparent 45%),
+    $color-bg;
+  padding: $space-5;
+}
+
+.login-card {
+  @include card;
+  width: 100%;
+  max-width: 420px;
+  padding: $space-7 $space-6;
+}
+
+.login-card__brand {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-weight: $font-weight-semibold;
+  color: $color-ink-800;
+  margin-bottom: $space-6;
+
+  strong {
+    color: $color-brand-teal;
+  }
+}
+
+.login-card__brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: $radius-full;
+  background: linear-gradient(135deg, $color-brand-teal, $color-brand-indigo);
+}
+
+h1 {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-ink-900;
+}
+
+.login-card__subtitle {
+  margin-top: $space-1;
+  color: $color-ink-500;
+  font-size: $font-size-sm;
+  margin-bottom: $space-6;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  &--loading {
+    gap: $space-3;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+
+  label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-ink-700;
+  }
+
+  input {
+    padding: $space-3 $space-4;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    font-size: $font-size-base;
+    width: 100%;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+    @include focus-ring;
+
+    &.field--invalid {
+      border-color: $color-danger;
+    }
+  }
+}
+
+.password-wrap {
+  position: relative;
+
+  input {
+    padding-right: 4.5rem;
+  }
+}
+
+.password-toggle {
+  @include button-reset;
+  position: absolute;
+  right: $space-3;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-brand-teal;
+}
+
+.field__error {
+  font-size: $font-size-xs;
+  color: $color-danger;
+  animation: rise-in $transition-fast both;
+}
+
+.login-form__error {
+  padding: $space-3;
+  border-radius: $radius-md;
+  background: $color-danger-bg;
+  color: $color-danger;
+  font-size: $font-size-sm;
+  animation: rise-in $transition-fast both;
+}
+
+.login-form__loading-note {
+  text-align: center;
+  color: $color-ink-500;
+  font-size: $font-size-sm;
+}
+
+.submit-btn {
+  @include button-reset;
+  @include focus-ring;
+  padding: $space-3 $space-4;
+  border-radius: $radius-md;
+  background: linear-gradient(135deg, $color-brand-teal, $color-brand-teal-dark);
+  color: $color-white;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-base;
+  transition: transform $transition-fast, box-shadow $transition-fast;
+  box-shadow: $shadow-md;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: $shadow-lg;
+  }
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.demo-hints {
+  margin-top: $space-6;
+  padding-top: $space-5;
+  border-top: 1px dashed $color-border;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: $font-size-xs;
+  color: $color-ink-500;
+}
+
+.demo-hints__buttons {
+  display: flex;
+  gap: $space-2;
+
+  button {
+    @include button-reset;
+    padding: $space-1 $space-3;
+    border-radius: $radius-full;
+    border: 1px solid $color-border;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    color: $color-ink-600;
+    transition: all $transition-fast;
+
+    &:hover {
+      border-color: $color-brand-teal;
+      color: $color-brand-teal;
+    }
+  }
+}

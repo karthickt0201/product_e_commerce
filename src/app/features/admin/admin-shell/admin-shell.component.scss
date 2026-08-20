@@ -1,0 +1,6 @@
+@use 'variables' as *;
+
+.admin-shell {
+  padding: $space-6 $space-5 $space-8;
+  animation: fade-in 260ms ease both;
+}

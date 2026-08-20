@@ -1,0 +1,10 @@
+<div class="toast-tray">
+  <div
+    class="toast toast--{{ toast.kind }}"
+    *ngFor="let toast of toasts()"
+    [@toastAnim]
+    (click)="dismiss(toast.id)"
+  >
+    {{ toast.text }}
+  </div>
+</div>

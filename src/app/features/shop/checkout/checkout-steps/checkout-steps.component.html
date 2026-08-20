@@ -1,0 +1,6 @@
+<div class="steps">
+  <div class="step" *ngFor="let label of labels; let i = index" [class.step--active]="current === i + 1" [class.step--done]="current > i + 1">
+    <span class="step__dot">{{ current > i + 1 ? '✓' : i + 1 }}</span>
+    <span class="step__label">{{ label }}</span>
+  </div>
+</div>

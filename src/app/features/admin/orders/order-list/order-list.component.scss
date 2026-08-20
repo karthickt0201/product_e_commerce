@@ -1,0 +1,19 @@
+@forward 'admin-table';
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.status-chip {
+  display: inline-block;
+  padding: 2px $space-3;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+
+  &--pending { background: $color-warning-bg; color: $color-warning; }
+  &--confirmed { background: $color-success-bg; color: $color-success; }
+  &--cancelled { background: $color-danger-bg; color: $color-danger; }
+}

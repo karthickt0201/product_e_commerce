@@ -1,0 +1,41 @@
+<form class="dynamic-form" [formGroup]="formGroup" (input)="onAnyValueChange()" (change)="onAnyValueChange()">
+  <ng-container *ngFor="let field of fields">
+    <div class="field" *ngIf="isVisible(field)" [class.field--checkbox]="field.type === 'checkbox'">
+      <label class="field__label" [for]="field.key" *ngIf="field.type !== 'checkbox'">{{ field.label }}</label>
+
+      <ng-container [ngSwitch]="field.type">
+        <select
+          *ngSwitchCase="'select'"
+          class="field__control"
+          [id]="field.key"
+          [formControlName]="field.key"
+        >
+          <option value="" disabled>Select {{ field.label | lowercase }}</option>
+          <option *ngFor="let opt of field.options" [value]="opt.value">{{ opt.label }}</option>
+        </select>
+
+        <label class="field__checkbox" *ngSwitchCase="'checkbox'">
+          <input type="checkbox" [id]="field.key" [formControlName]="field.key" />
+          <span>{{ field.label }}</span>
+        </label>
+
+        <app-card-number-input
+          *ngSwitchCase="'card-number'"
+          [id]="field.key"
+          [formControlName]="field.key"
+        ></app-card-number-input>
+
+        <input
+          *ngSwitchDefault
+          class="field__control"
+          [id]="field.key"
+          [type]="field.type"
+          [placeholder]="field.placeholder ?? ''"
+          [formControlName]="field.key"
+        />
+      </ng-container>
+
+      <p class="field__error" *ngIf="errorFor(field) as msg">{{ msg }}</p>
+    </div>
+  </ng-container>
+</form>

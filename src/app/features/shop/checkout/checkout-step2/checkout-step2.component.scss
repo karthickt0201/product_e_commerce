@@ -1,0 +1,9 @@
+@forward 'checkout';
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.form-card {
+  @include card;
+  padding: $space-6;
+  margin-bottom: $space-5;
+}

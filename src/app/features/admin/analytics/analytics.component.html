@@ -1,0 +1,50 @@
+<div class="admin-page">
+  <div class="admin-page__header">
+    <div>
+      <h1>Analytics</h1>
+      <p>A quick pulse on revenue, order health, and inventory.</p>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-card__label">Total revenue</span>
+      <span class="stat-card__value">{{ totalRevenue() | currency }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card__label">Pending orders</span>
+      <span class="stat-card__value stat-card__value--warning">{{ pendingCount() }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card__label">Confirmed orders</span>
+      <span class="stat-card__value stat-card__value--success">{{ confirmedCount() }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card__label">Cancelled orders</span>
+      <span class="stat-card__value stat-card__value--danger">{{ cancelledCount() }}</span>
+    </div>
+  </div>
+
+  <div class="panel-grid">
+    <div class="panel-card">
+      <h2>Top categories</h2>
+      <div class="bar-row" *ngFor="let entry of topCategories()">
+        <span class="bar-row__label">{{ entry[0] }}</span>
+        <div class="bar-row__track">
+          <div class="bar-row__fill" [style.width.%]="(entry[1] / maxCategoryCount()) * 100"></div>
+        </div>
+        <span class="bar-row__value">{{ entry[1] }}</span>
+      </div>
+    </div>
+
+    <div class="panel-card">
+      <h2>Low stock alerts</h2>
+      <div class="low-stock-row" *ngFor="let p of lowStockProducts()">
+        <img [src]="p.thumbnail" [alt]="p.title" />
+        <span class="low-stock-row__title">{{ p.title }}</span>
+        <span class="low-stock-row__stock">{{ p.stock }} left</span>
+      </div>
+      <p class="empty-note" *ngIf="lowStockProducts().length === 0">Everything is well stocked 🎉</p>
+    </div>
+  </div>
+</div>

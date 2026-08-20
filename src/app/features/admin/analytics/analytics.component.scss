@@ -1,0 +1,125 @@
+@forward 'admin-table';
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: $space-4;
+  margin-bottom: $space-6;
+}
+
+.stat-card {
+  @include card;
+  padding: $space-5;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  animation: rise-in $transition-base both;
+}
+
+.stat-card__label {
+  font-size: $font-size-xs;
+  color: $color-ink-500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: $font-weight-semibold;
+}
+
+.stat-card__value {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-ink-900;
+
+  &--warning { color: $color-warning; }
+  &--success { color: $color-success; }
+  &--danger { color: $color-danger; }
+}
+
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: $space-5;
+}
+
+.panel-card {
+  @include card;
+  padding: $space-5;
+
+  h2 {
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $space-4;
+  }
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 32px;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-2 0;
+  font-size: $font-size-sm;
+}
+
+.bar-row__label {
+  text-transform: capitalize;
+  color: $color-ink-600;
+  @include truncate;
+}
+
+.bar-row__track {
+  height: 8px;
+  background: $color-ink-100;
+  border-radius: $radius-full;
+  overflow: hidden;
+}
+
+.bar-row__fill {
+  height: 100%;
+  background: linear-gradient(90deg, $color-brand-teal, $color-brand-indigo);
+  border-radius: $radius-full;
+  transition: width $transition-slow;
+}
+
+.bar-row__value {
+  text-align: right;
+  font-weight: $font-weight-semibold;
+  color: $color-ink-700;
+}
+
+.low-stock-row {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-2 0;
+  border-bottom: 1px solid $color-ink-100;
+  font-size: $font-size-sm;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  img {
+    width: 32px;
+    height: 32px;
+    border-radius: $radius-sm;
+    object-fit: cover;
+  }
+
+  &__title {
+    @include truncate;
+  }
+
+  &__stock {
+    color: $color-warning;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-xs;
+  }
+}
+
+.empty-note {
+  color: $color-ink-400;
+  font-size: $font-size-sm;
+}

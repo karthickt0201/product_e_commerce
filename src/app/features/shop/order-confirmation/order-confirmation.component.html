@@ -1,0 +1,25 @@
+<div class="confirmation-page" *ngIf="order() as o; else notFound">
+  <div class="confirmation-badge">✓</div>
+  <h1>Order confirmed</h1>
+  <p>Thanks — your order <strong>{{ o.id }}</strong> has been placed.</p>
+
+  <div class="order-summary">
+    <div class="order-summary__row" *ngFor="let item of o.items">
+      <span>{{ item.title }} × {{ item.quantity }}</span>
+      <span>${{ (item.price * item.quantity).toFixed(2) }}</span>
+    </div>
+    <div class="order-summary__row order-summary__row--total">
+      <span>Total</span>
+      <span>${{ o.total.toFixed(2) }}</span>
+    </div>
+  </div>
+
+  <a routerLink="/shop" class="btn btn--primary">Continue shopping</a>
+</div>
+
+<ng-template #notFound>
+  <div class="confirmation-page">
+    <p>We couldn't find that order.</p>
+    <a routerLink="/shop" class="btn btn--primary">Back to shop</a>
+  </div>
+</ng-template>

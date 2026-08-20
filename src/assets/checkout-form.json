@@ -1,0 +1,75 @@
+[
+  {
+    "key": "fullName",
+    "label": "Full name",
+    "type": "text",
+    "placeholder": "Ada Lovelace",
+    "validators": [
+      { "type": "required", "message": "Full name is required." },
+      { "type": "minLength", "value": 2, "message": "Enter at least 2 characters." }
+    ]
+  },
+  {
+    "key": "email",
+    "label": "Email",
+    "type": "email",
+    "placeholder": "ada@example.com",
+    "validators": [
+      { "type": "required", "message": "Email is required." },
+      { "type": "email", "message": "Enter a valid email address." }
+    ]
+  },
+  {
+    "key": "phone",
+    "label": "Phone number",
+    "type": "tel",
+    "placeholder": "9876543210",
+    "validators": [
+      { "type": "required", "message": "Phone number is required." },
+      { "type": "pattern", "value": "^[0-9]{10}$", "message": "Enter a 10-digit phone number." }
+    ]
+  },
+  {
+    "key": "addressLine",
+    "label": "Delivery address",
+    "type": "text",
+    "placeholder": "221B Baker Street",
+    "validators": [{ "type": "required", "message": "Delivery address is required." }]
+  },
+  {
+    "key": "city",
+    "label": "City",
+    "type": "text",
+    "placeholder": "Bengaluru",
+    "validators": [{ "type": "required", "message": "City is required." }]
+  },
+  {
+    "key": "state",
+    "label": "State",
+    "type": "select",
+    "options": [
+      { "label": "Karnataka", "value": "KA" },
+      { "label": "Maharashtra", "value": "MH" },
+      { "label": "Delhi", "value": "DL" },
+      { "label": "Tamil Nadu", "value": "TN" },
+      { "label": "Other", "value": "OT" }
+    ],
+    "validators": [{ "type": "required", "message": "Select a state." }]
+  },
+  {
+    "key": "pincode",
+    "label": "PIN code",
+    "type": "text",
+    "placeholder": "560001",
+    "validators": [
+      { "type": "required", "message": "PIN code is required." },
+      { "type": "pattern", "value": "^[0-9]{6}$", "message": "Enter a 6-digit PIN code." }
+    ]
+  },
+  {
+    "key": "saveAddress",
+    "label": "Save this address for next time",
+    "type": "checkbox",
+    "defaultValue": false
+  }
+]

@@ -1,0 +1,16 @@
+<div class="card-input" [class.card-input--valid]="isValid() === true" [class.card-input--invalid]="isValid() === false">
+  <input
+    [id]="id"
+    class="card-input__field"
+    type="text"
+    inputmode="numeric"
+    autocomplete="cc-number"
+    placeholder="1234 5678 9012 3456"
+    [value]="displayValue()"
+    [disabled]="disabled()"
+    (input)="onInput($any($event.target).value)"
+    (blur)="onBlur()"
+  />
+  <span class="card-input__icon" *ngIf="isValid() === true">✓</span>
+  <span class="card-input__icon card-input__icon--bad" *ngIf="isValid() === false">!</span>
+</div>

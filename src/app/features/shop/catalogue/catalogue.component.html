@@ -1,0 +1,75 @@
+<div class="catalogue-page">
+  <header class="catalogue-header">
+    <h1>Shop the catalogue</h1>
+    <p>Browse products, filter by category, price, and availability.</p>
+  </header>
+
+  <div class="catalogue-layout">
+    <aside class="filters">
+      <div class="filters__group">
+        <h3>Category</h3>
+        <label class="chip-toggle" *ngFor="let cat of categories">
+          <input type="checkbox" [checked]="selectedCategories().has(cat)" (change)="toggleCategory(cat)" />
+          <span>{{ cat }}</span>
+        </label>
+      </div>
+
+      <div class="filters__group">
+        <h3>Max price: ${{ maxPrice() }}</h3>
+        <input
+          type="range"
+          min="0"
+          max="1000"
+          step="10"
+          [value]="maxPrice()"
+          (input)="onMaxPriceChange($any($event.target).value)"
+        />
+      </div>
+
+      <div class="filters__group">
+        <label class="toggle-row">
+          <input type="checkbox" [checked]="inStockOnly()" (change)="toggleInStock()" />
+          <span>In stock only</span>
+        </label>
+      </div>
+    </aside>
+
+    <section class="catalogue-content">
+      <ng-container *ngIf="loading()">
+        <div class="product-grid">
+          <div class="skeleton-card" *ngFor="let s of [].constructor(8)">
+            <app-skeleton height="180px" radius="12px"></app-skeleton>
+            <app-skeleton height="0.85rem" width="60%"></app-skeleton>
+            <app-skeleton height="0.85rem" width="40%"></app-skeleton>
+          </div>
+        </div>
+      </ng-container>
+
+      <div class="error-state" *ngIf="!loading() && loadFailed()">
+        <p>Something went wrong loading products.</p>
+        <button class="btn btn--primary" type="button" (click)="retry()">Retry</button>
+      </div>
+
+      <ng-container *ngIf="!loading() && !loadFailed()">
+        <div class="product-grid" *ngIf="result().items.length; else emptyState">
+          <app-product-card
+            *ngFor="let product of result().items"
+            [product]="product"
+            (addToCart)="addToCart($event)"
+          ></app-product-card>
+        </div>
+        <ng-template #emptyState>
+          <div class="empty-state">
+            <p>No products match your filters.</p>
+          </div>
+        </ng-template>
+
+        <div class="pagination" *ngIf="totalPages() > 1">
+          <button class="btn btn--ghost btn--sm" [disabled]="page() === 1" (click)="page.set(page() - 1)">Prev</button>
+          <span>Page {{ page() }} of {{ totalPages() }}</span>
+          <button class="btn btn--ghost btn--sm" [disabled]="page() === totalPages()" (click)="page.set(page() + 1)">Next</button>
+        </div>
+      </ng-container>
+    </section>
+  </div>
+</div>
