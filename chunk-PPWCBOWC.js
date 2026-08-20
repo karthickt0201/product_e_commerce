@@ -1,0 +1,1 @@
+import{ha as o}from"./chunk-I4LUT6ZY.js";var i=.08,p=(()=>{class t{transform(r,e=i){let n=Math.round(r*e*100)/100,a=Math.round((r+n)*100)/100;return{subtotal:r,tax:n,total:a}}static{this.\u0275fac=function(e){return new(e||t)}}static{this.\u0275pipe=o({name:"orderTotals",type:t,pure:!0,standalone:!0})}}return t})();export{p as a};

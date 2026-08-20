@@ -1,0 +1,30 @@
+[
+  {
+    "id": "u-1001",
+    "name": "Priya Nair",
+    "email": "priya.admin@platformcommons.dev",
+    "passwordHash": "e86f78a8a3caf0b60d8e74e5942aa6d86dc150cd3c03338aef25b7d2d7e3acc7",
+    "role": "admin"
+  },
+  {
+    "id": "u-1002",
+    "name": "Daniel Okafor",
+    "email": "daniel.admin@platformcommons.dev",
+    "passwordHash": "7f484e682c9cf4c42e9cba611bcf04c18d1372bb920756c657c8c0233a2693ae",
+    "role": "admin"
+  },
+  {
+    "id": "u-2001",
+    "name": "Meera Iyer",
+    "email": "meera.user@platformcommons.dev",
+    "passwordHash": "3e7c19576488862816f13b512cacf3e4ba97dd97243ea0bd6a2ad1642d86ba72",
+    "role": "user"
+  },
+  {
+    "id": "u-2002",
+    "name": "Sam Torres",
+    "email": "sam.user@platformcommons.dev",
+    "passwordHash": "78fb4e230cccb38cb3fe4951804ad8ac232a1c71a73d42928522494860ba65af",
+    "role": "user"
+  }
+]
